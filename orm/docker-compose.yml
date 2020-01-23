@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3307:3306
+    volumes:
+      - .db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.0
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - 8080:80
